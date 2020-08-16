@@ -28,15 +28,7 @@ func RateCourse(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	//Fetch userid and courseid
-	//courseid := c.Param("course_id")
-	//userid := c.Param("user_id")
-	rating := input.Rating
-	//state := c
-
-	//fmt.Println("courseid", courseid, "userid:", userid, "rating:", rating, "state:", state)
-	//Check if course is complete for a particular user
+	rating := input.Rating	
 	if c.Param("is_complete") == "true" {
 		fmt.Println("Checking ratings")
 		//Check if rating is in between 1-5
