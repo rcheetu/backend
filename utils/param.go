@@ -25,7 +25,7 @@ func GetOrderParam(c *gin.Context) []string {
 
 func GetPageParam(c *gin.Context) (int, int) {
 	page, _ := strconv.Atoi(c.DefaultQuery("page", "1"))
-	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "20"))
+	limit, _ := strconv.Atoi(c.DefaultQuery("limit", "25"))
 	return page, limit
 }
 
@@ -38,4 +38,34 @@ func GetIntParam(key string, c *gin.Context) uint {
 		return 0
 	}
 	return uint(id)
+}
+
+func GetOrderParams(c *gin.Context) []string {
+	var orderBy []string
+	orders := c.DefaultQuery("order", "rating")
+	for _, order := range strings.Split(orders, ",") {
+		order = strings.TrimSpace(order)
+		orderBy = append(orderBy, fmt.Sprintf("%s DESC", order))
+	}
+	return orderBy
+}
+
+func GetOrderParamsByDate(c *gin.Context) []string {
+	var orderBy []string
+	orders := c.DefaultQuery("order", "date")
+	for _, order := range strings.Split(orders, ",") {
+		order = strings.TrimSpace(order)
+		orderBy = append(orderBy, fmt.Sprintf("%s DESC", order))
+	}
+	return orderBy
+}
+
+func GetOrderParamsByLowest(c *gin.Context) []string {
+	var orderBy []string
+	orders := c.DefaultQuery("order", "rating")
+	for _, order := range strings.Split(orders, ",") {
+		order = strings.TrimSpace(order)
+		orderBy = append(orderBy, fmt.Sprintf("%s ASC", order))
+	}
+	return orderBy
 }

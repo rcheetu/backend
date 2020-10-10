@@ -1,14 +1,13 @@
 package models
 
 import (
-	"time"
-
 	uuid "github.com/satori/go.uuid"
 )
 
 type Course struct {
-	CourseID uuid.UUID `json:"course_id,omitempty"`
-	Name     string    `json:"course_name,omitempty"`
-	Duration time.Time `db:"date" json:"date" time_format:"unixNano"`
-	CourseBy string    `json:"course_instructor,omitempty"`
+	ID uuid.UUID `json:"id,omitempty"`
+	//CourseID   uuid.UUID `db:"course_id" json:"course_id,omitempty"`
+	CourseName string `json:"course_name,omitempty"`
+	Duration   int    `db:"duration" json:"duration"`
+	CourseBy   string `json:"course_by,omitempty"`
 }
